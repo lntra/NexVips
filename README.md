@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/lntra/NexVips">
-    <img src="[Logo](./assets/group17.png)" alt="Logo" width="80" height="80">
+    <img src="./public/assets/README/Group17.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">NexVips</h3>
@@ -30,15 +30,11 @@ This project focuses on a fast, responsive, and modern layout to serve as the ma
 > Here's a quick look at what the homepage looks like:
 
 ### 🔹 Landing Page
-![Landing Page](./assets/screenshot1.png)
+![Landing Page](./public/assets/README/screenshot1.png)
 
-![Landing Page2](./assets/screenshot3.png)
+![Landing Page2](./public/assets/README/screenshot3.png)
 
-![Landing Page3](./assets/screenshot2.png)
-
-<!-- You can add more screenshots below as needed -->
-<!-- ![Screenshot 2](https://i.imgur.com/yourImage2.png) -->
-<!-- ![Screenshot 3](https://i.imgur.com/yourImage3.png) -->
+![Landing Page3](./public/assets/README/screenshot2.png)
 
 ---
 
