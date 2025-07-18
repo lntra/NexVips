@@ -111,7 +111,7 @@ const concorrenteTotal = Math.max(isAnnual ? monthlyConcorrenteTotal * 12 : mont
           
           <h2 className="text-3xl font-bold row-start-1">Receita Bruta</h2>
           
-            <div className='h-full w-full row-start-2 row-end-6 flex flex-col align-top items-center justify-start  gap-8 justify-items-start'>
+            <div className='h-full w-full row-start-2 row-end-6 flex flex-col align-top items-center justify-start gap-4 sm:gap-5 justify-items-start'>
 
             <h2 className="text-3xl w-[92.5%] text-white font-bold row-start-2 relative after:content-[''] after:block after:h-[2px] after:bg-[#137A7F] after:absolute after:left-0 after:right-0 after:top-full after:mt-2">
                 {formatCurrency(rawTotal)}

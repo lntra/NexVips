@@ -45,7 +45,6 @@ function CircleProgress({
   );
 }
 
-// Fee tiers based on sales
 function getFee(sales: number) {
   if (sales <= 20) return { fixed: 1.0, percent: 4.0 };
   if (sales <= 50) return { fixed: 0.9, percent: 3.5 };
@@ -72,14 +71,14 @@ export default function StatsGrid() {
   
         if (current >= 500 && direction === 1) {
           isPaused = true;
-          setSales(current); // update once at 500
+          setSales(current); 
           clearInterval(interval);
   
           timeout = setTimeout(() => {
             direction = -1;
             isPaused = false;
             startInterval();
-          }, 2000); // pause for 1 second at 500
+          }, 2000); 
         } else if (current <= 0 && direction === -1) {
           direction = 1;
         }
@@ -96,28 +95,62 @@ export default function StatsGrid() {
     };
   }, []);
   
-  
 
   const { fixed, percent } = getFee(sales);
 
-  // taxPercent decreases from 4% to 2% as sales go from 0 to 300
-
-  const taxPercent = 4 - (sales / 250) * 2; // from 4% to 2%
+  const taxPercent = 4 - (sales / 250) * 2;
 
   const salesDisplay = sales >= 500 ? "500+" : sales.toString();
   const salesPercent = Math.min((sales / 500) * 100, 100);
 
+  const [size, setSize] = useState(80); 
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 640) setSize(80);
+      else if (width < 1520) setSize(80); 
+      else setSize(80); 
+    };
+
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className="gap-3 col-start-2 col-end-12 w-full h-full row-start-2 row-end-4 grid grid-cols-3 grid-rows-2">
-      {/* Sales Circle */}
-      <div className="col-start-1 col-end-1 min-w-[80px] row-start-1 row-end-1 flex flex-col justify-around">
-        <CircleProgress value={salesPercent} color="#86CECB" />
+    <div className="gap-3 sm:gap-3 col-start-2 col-end-12 w-full h-full row-start-2 row-end-4 flex flex-col align-middle justify-around grid-cols-2 sm:grid-cols-3 grid-rows-2">
+      
+      <div className="flex items-center">
+        <div className="flex-shrink-0">
+          <CircleProgress value={salesPercent} size={size} color="#86CECB" />
+        </div>
+
+        <div className="flex-grow flex justify-center">
+          <div className="min-w-[127px] w-[127px] flex flex-col justify-center items-center">
+            <h3 className="text-lg font-medium">{salesDisplay}</h3>
+            <p className="text-sm text-[#929292]">
+              Vendas <span className="xl:inline hidden">Mensais</span>
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* Tax Circle */}
+      <div className="flex justify-between sm:justify-start">
       <div className="col-start-1 col-end-2 row-start-2 row-end-2 flex flex-col justify-around">
-        <CircleProgress value={(taxPercent / 4) * 100} color="#EC4899" />
+        <CircleProgress value={(taxPercent / 4) * 100} size={size} color="#EC4899" />
       </div>
+
+      <div className="flex-grow flex justify-center">
+        <div className="z-10 min-w-[127px] w-[127px] flex flex-col justify-center items-center">
+          <h3 className="text-lg font-medium text-center text-nowrap">
+            {percent.toFixed(1)}%<span className="xl:inline hidden"> + {fixed.toFixed(2)}</span>
+          </h3>
+          <p className="text-sm text-[#929292]">Por <span className="xl:inline hidden">cada</span> venda</p>
+        </div>
+      </div>
+      </div>
+
 
 
     </div>

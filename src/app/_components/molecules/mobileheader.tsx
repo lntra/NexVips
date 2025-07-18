@@ -43,11 +43,10 @@ export default function HeaderMobile() {
         <div className='h-full w-full flex justify-center items-center font-bold text-black rounded-xl col-start-3 col-end-11 row-start-4'>
             <button className="
             bg-[#86CECB] 
-            h-1/2 
             font-bold 
             text-black 
-            py-3 
-            px-6 
+            py-2
+            px-4 
             rounded-xl 
             transition-colors 
             duration-200 

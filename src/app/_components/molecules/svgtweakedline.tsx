@@ -7,31 +7,40 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SvgTree() {
-    useEffect(() => {
+  useEffect(() => {
     const paths = document.querySelectorAll(".tree-line path");
 
     paths.forEach((path) => {
-        const svgPath = path as SVGPathElement;
-        const length = svgPath.getTotalLength();
+      const svgPath = path as SVGPathElement;
+      const length = svgPath.getTotalLength();
 
-        gsap.set(path, {
-        strokeDasharray: length,
-        strokeDashoffset: length,
-        });
+      // Ensure dash pattern is not applied at first
+      svgPath.style.strokeDasharray = `${length}`;
+      svgPath.style.strokeDashoffset = `${length}`;
+      svgPath.style.strokeLinecap = "round";
 
-        gsap.to(svgPath, {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".tree-line",
+          start: "top 80%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      tl.to(svgPath, {
         strokeDashoffset: 0,
         duration: 2,
         ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".tree-line",
-            start: "top 80%",
-            toggleActions: "play none none none",
-            once: true,
+      }).to(
+        svgPath,
+        {
+          strokeDasharray: "4 6", 
         },
-        });
+        "-=0.5"
+      );
     });
-    }, []);
+  }, []);
 
   return (
     <>

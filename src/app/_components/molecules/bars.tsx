@@ -65,7 +65,6 @@ export default function AnimatedBars() {
 
   return (
     <div className="content-center flex flex-col items-center relative h-[160px] w-full">
-      {/* Bars and months */}
       <div className="flex justify-between items-end w-full h-[130px] relative">
         {displayHeights.map((height, i) => (
           <div key={`bar-${i}`} className="flex flex-col items-center">
@@ -76,7 +75,6 @@ export default function AnimatedBars() {
           </div>
         ))}
 
-        {/* Pink SVG Line */}
         {showLine && (
           <svg
             className="absolute left-0 top-0 w-full h-full pointer-events-none"
